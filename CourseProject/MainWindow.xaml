@@ -1,0 +1,47 @@
+﻿<Window x:Class="CourseProject.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseProject"
+        mc:Ignorable="d"
+        Title="Pharmasy" Height="700" Width="1000" MaxHeight="700" MaxWidth="1000" MinHeight="700" MinWidth="1000" Icon="Assets/Images/logo.png" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition/>
+            <RowDefinition  Height="80"/>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="Silver" BorderThickness="1, 0, 0, 1"></Border>
+        <TextBlock HorizontalAlignment="Center" FontFamily="Nunito" VerticalAlignment="Center" FontSize="20" x:Name="MainHeader">Выберите интересующий вас раздел</TextBlock>
+        <TextBlock  HorizontalAlignment="Left" FontFamily="Nunito" VerticalAlignment="Center" FontSize="20" Margin="909,0,0,0" FontWeight="Bold" MouseDown="TextBlock_MouseDown" x:Name="Exit">Выйти</TextBlock>
+        <Image Source="Assets/Images/logo2.png" HorizontalAlignment="Left" />
+        <Frame x:Name="MainFrame" Grid.Row="1" NavigationUIVisibility="Hidden" Navigated="MainFrame_Navigated" >
+            
+        </Frame>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="userLoggedLabel"  FontSize="15">
+
+            </Label>
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="locationLabel" Grid.Column="0"></Label>
+                <Button x:Name="changeLocationButton" Grid.Column="1"  Background="#613F9D" Foreground="White" Width="200" Height="60" FontSize="25" Click="changeLocationButton_Click">Поменять</Button>
+            </Grid>
+
+            
+
+        </Grid>
+
+       
+
+    </Grid>
+</Window>

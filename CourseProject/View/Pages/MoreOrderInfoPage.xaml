@@ -1,0 +1,49 @@
+﻿<Page x:Class="CourseProject.View.Pages.MoreOrderInfoPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CourseProject.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MoreOrderInfoPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            
+            <RowDefinition Height="250"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel x:Name="finalSumStackPanel" Grid.Row="4"></StackPanel>
+        <StackPanel x:Name="orderNoStackPanel" HorizontalAlignment="Center" VerticalAlignment="Center">
+            
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel x:Name="orderDateStackPanel"></StackPanel>
+            <StackPanel Grid.Column="1" x:Name="orderTimeStackPanel"></StackPanel>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel x:Name="userInfoStackPanel"></StackPanel>
+            <StackPanel Grid.Column="1" x:Name="adressInfoStackPanel"></StackPanel>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel x:Name="medecineNameStackPanel"></StackPanel>
+            <StackPanel Grid.Column="1" x:Name="medecineAmountStackPanel"></StackPanel>
+        </Grid>
+    </Grid>
+</Page>

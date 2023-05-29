@@ -1,0 +1,35 @@
+﻿<Page x:Class="CourseProject.View.Pages.MedecinesAmount"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CourseProject.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MedecinesAmount">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100"/>
+            <RowDefinition/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="2" Width="150" Background="#613F9D" Foreground="White" FontSize="13" x:Name="newAddressOfMedecineButton" Click="newAddressOfMedecineButton_Click">Добавить новый адрес</Button>
+        <StackPanel Margin="0 30 0 0" HorizontalAlignment="Center" x:Name="medNameStackPanel"></StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="600"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+
+            </Grid.ColumnDefinitions>
+            
+
+            <StackPanel Margin="0,0,150,0" HorizontalAlignment="Right" Grid.Column="0" x:Name="adressNameStackPanel"></StackPanel>
+            <StackPanel Margin="0 0 100 0" HorizontalAlignment="Center"  Grid.Column="1" x:Name="amountStackPanel"></StackPanel>
+            <StackPanel HorizontalAlignment="Center"  Grid.Column="2" x:Name="changeButtonsStackPanel"></StackPanel>
+        </Grid>
+
+    </Grid>
+</Page>

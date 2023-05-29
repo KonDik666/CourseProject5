@@ -1,0 +1,34 @@
+﻿<Page x:Class="CourseProject.View.Pages.NewVaultPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CourseProject.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="NewVaultPage">
+
+    <Grid>
+        <StackPanel>
+            <Grid Height="270" Width="472" Margin="80">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Height="30"  FontSize="15" HorizontalAlignment="Center" Margin="0,50,0,190">Введите название города</TextBlock>
+                <TextBox Grid.Column="1" Height="30" Width="200" Margin="18,50,18,190" x:Name="cityTextBox"></TextBox>
+
+                <TextBlock Height="30"  FontSize="15" HorizontalAlignment="Center" Margin="0,105,0,135">Введите название адреса</TextBlock>
+                <TextBox Grid.Column="1" Height="30" Width="200" Margin="18,105,18,135" x:Name="adressTextBox"></TextBox>
+
+                <TextBlock Height="30"  FontSize="15" HorizontalAlignment="Center" Margin="0,161,0,79" Width="175">Выберите тип строения</TextBlock>
+                <ComboBox Grid.Column="1" Height="30" Width="200" Margin="18,161,18,79" x:Name="buildingTypeComboBox"></ComboBox>
+
+                <Button Width="150" Margin="161,216,161,23" Grid.ColumnSpan="2" FontSize="20" Background="#613F9D" Foreground="White" x:Name="saveButton" Click="saveButton_Click">Сохранить</Button>
+
+                <TextBox Margin="30,219,96,23" x:Name="erer"></TextBox>
+
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>

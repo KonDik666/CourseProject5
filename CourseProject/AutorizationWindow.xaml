@@ -1,0 +1,30 @@
+﻿<Window x:Class="CourseProject.AutorizationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseProject"
+        mc:Ignorable="d"
+        Title="AutorizationWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="80"/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="Silver" BorderThickness="1, 0, 0, 1"></Border>
+        <TextBlock HorizontalAlignment="Center" FontFamily="Nunito" VerticalAlignment="Center" FontSize="20">Добро пожаловать! Пожалуйста выполните вход</TextBlock>
+        <Image Source="Assets/Images/logo2.png" HorizontalAlignment="Left" />
+        <StackPanel Grid.Row="1"  HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <UniformGrid Columns="2" Height="50">
+                <Label VerticalAlignment="Top" FontSize="15">Логин пользователя</Label>
+                <TextBox Width="226" VerticalAlignment="Top" FontSize="15" Margin="0,5,0,0" x:Name="LoginTextBlock"/>
+            </UniformGrid>
+            <UniformGrid Columns="2">
+                <Label VerticalAlignment="Top" FontSize="15">Пароль пользователя</Label>
+                <PasswordBox Width="226" VerticalAlignment="Top" FontSize="15" Margin="0,5,0,0" x:Name="PassPasswordBox"/>
+            </UniformGrid>
+        </StackPanel>
+        <Button Grid.Row="3" Width="200" Height="50" FontSize="20" Background="#613F9D" Foreground="White" x:Name="autorizationButton" Click="autorizationButton_Click">Войти</Button>
+    </Grid>
+</Window>

@@ -1,0 +1,404 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F1D3C3EC-462E-4CA6-9307-9653A61403F3}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>CourseProject</RootNamespace>
+    <AssemblyName>CourseProject</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero2" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="ChoosingDateDialogWindow.xaml.cs">
+      <DependentUpon>ChoosingDateDialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Core.cs" />
+    <Compile Include="MedecinesNewAmountDialogWindow.xaml.cs">
+      <DependentUpon>MedecinesNewAmountDialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SelecetNewAdressDialogWindow.xaml.cs">
+      <DependentUpon>SelecetNewAdressDialogWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Model\adresses.cs">
+      <DependentUpon>PharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View\Model\building.cs">
+      <DependentUpon>PharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View\Model\customers.cs">
+      <DependentUpon>PharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View\Model\medecines_availability.cs">
+      <DependentUpon>PharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View\Model\medicines.cs">
+      <DependentUpon>PharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View\Model\medicines_photo.cs">
+      <DependentUpon>PharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View\Model\ordered_medecines.cs">
+      <DependentUpon>PharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View\Model\orders.cs">
+      <DependentUpon>PharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View\Model\PharmacyModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PharmacyModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View\Model\PharmacyModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View\Model\PharmacyModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PharmacyModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="View\Model\photo.cs">
+      <DependentUpon>PharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View\Model\providers.cs">
+      <DependentUpon>PharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View\Model\sysdiagrams.cs">
+      <DependentUpon>PharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View\Model\user.cs">
+      <DependentUpon>PharmacyModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\MainPage.xaml.cs">
+      <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\MedecineInfoPage.xaml.cs">
+      <DependentUpon>MedecineInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\MedecinesAmount.xaml.cs">
+      <DependentUpon>MedecinesAmount.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\MedecinesPage.xaml.cs">
+      <DependentUpon>MedecinesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\MoreOrderInfoPage.xaml.cs">
+      <DependentUpon>MoreOrderInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\NewMedecineAddressPage.xaml.cs">
+      <DependentUpon>NewMedecineAddressPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\NewMedecinePage.xaml.cs">
+      <DependentUpon>NewMedecinePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\NewProviderPage.xaml.cs">
+      <DependentUpon>NewProviderPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\NewUserPage.xaml.cs">
+      <DependentUpon>NewUserPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\NewVaultPage.xaml.cs">
+      <DependentUpon>NewVaultPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\ProvidersInfoPage.xaml.cs">
+      <DependentUpon>ProvidersInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\ProvidersMoreInfoPage.xaml.cs">
+      <DependentUpon>ProvidersMoreInfoPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\PurchasePage.xaml.cs">
+      <DependentUpon>PurchasePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\SalesPage.xaml.cs">
+      <DependentUpon>SalesPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\UsersPage.xaml.cs">
+      <DependentUpon>UsersPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Pages\VaultsListsPage.xaml.cs">
+      <DependentUpon>VaultsListsPage.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AutorizationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChoosingDateDialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AutorizationWindow.xaml.cs">
+      <DependentUpon>AutorizationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="MedecinesNewAmountDialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelecetNewAdressDialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\StyleDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\MedecineInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\MedecinesAmount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\MedecinesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\MoreOrderInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\NewMedecineAddressPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\NewMedecinePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\NewProviderPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\NewUserPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\NewVaultPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\ProvidersInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\ProvidersMoreInfoPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\PurchasePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\SalesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\UsersPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\Pages\VaultsListsPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <EntityDeploy Include="View\Model\PharmacyModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>PharmacyModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="View\Model\PharmacyModel.edmx.diagram">
+      <DependentUpon>PharmacyModel.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\logoo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\logo2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Images\DB_Images\id1%281%29.jpg" />
+    <Resource Include="Assets\Images\DB_Images\id1%282%29.jpg" />
+    <Resource Include="Assets\Images\DB_Images\id2%281%29.jpg" />
+    <Resource Include="Assets\Images\DB_Images\id2%282%29.jpg" />
+    <Resource Include="Assets\Images\DB_Images\id10%281%29.jpg" />
+    <Resource Include="Assets\Images\DB_Images\id10%282%29.jpg" />
+    <Resource Include="Assets\Images\DB_Images\id3%281%29.jpg" />
+    <Resource Include="Assets\Images\DB_Images\id3%282%29.jpg" />
+    <Resource Include="Assets\Images\DB_Images\id4%281%29.jpg" />
+    <Resource Include="Assets\Images\DB_Images\id4%282%29.jpg" />
+    <Resource Include="Assets\Images\DB_Images\id5%281%29.jpg" />
+    <Resource Include="Assets\Images\DB_Images\id5%282%29.jpg" />
+    <Resource Include="Assets\Images\DB_Images\id6%281%29.jpg" />
+    <Resource Include="Assets\Images\DB_Images\id6%282%29.jpg" />
+    <Resource Include="Assets\Images\DB_Images\id7%281%29.jpg" />
+    <Resource Include="Assets\Images\DB_Images\id8%281%29.jpg" />
+    <Resource Include="Assets\Images\DB_Images\id11%281%29.jpg" />
+    <Resource Include="Assets\Images\DB_Images\id11%282%29.jpg" />
+    <Resource Include="Assets\Images\DB_Images\id12%281%29.jpg" />
+    <Resource Include="Assets\Images\DB_Images\id12%282%29.jpg" />
+    <Resource Include="Assets\Images\DB_Images\id13%281%29.png" />
+    <Resource Include="Assets\Images\DB_Images\id13%282%29.jpg" />
+    <Resource Include="Assets\Images\DB_Images\id14%281%29.jpg" />
+    <Resource Include="Assets\Images\DB_Images\id14%282%29.jpg" />
+    <Content Include="View\Model\PharmacyModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>PharmacyModel.Context.cs</LastGenOutput>
+      <DependentUpon>PharmacyModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="View\Model\PharmacyModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>PharmacyModel.edmx</DependentUpon>
+      <LastGenOutput>PharmacyModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StringCheckLibrary\StringCheckLibrary.csproj">
+      <Project>{72afbe76-05ac-4f9c-a40b-c73791b09154}</Project>
+      <Name>StringCheckLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>6</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Word">
+      <Guid>{00020905-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>8</VersionMajor>
+      <VersionMinor>4</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="VBIDE">
+      <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>5</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

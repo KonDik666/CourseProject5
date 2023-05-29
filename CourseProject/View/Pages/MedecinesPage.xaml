@@ -1,0 +1,94 @@
+﻿<Page x:Class="CourseProject.View.Pages.MedecinesPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:CourseProject.View.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MedecinesPage" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="200" >
+
+                <Button Height="30" Width="140" Margin="00,20,0,10" FontSize="20" x:Name="code_A" Click="code_A_Click">Код A</Button>
+                <Button Height="30" Width="140" Margin="00,20,0,10" FontSize="20" x:Name="code_B" Click="code_B_Click">Код B</Button>
+                <Button Height="30" Width="140" Margin="00,20,0,10" FontSize="20" x:Name="code_C" Click="code_C_Click">Код C</Button>
+                <Button Height="30" Width="140" Margin="00,20,0,10" FontSize="20" x:Name="code_D" Click="code_D_Click">Код D</Button>
+                <Button Height="30" Width="140" Margin="00,20,0,10" FontSize="20" x:Name="code_G" Click="code_G_Click">Код G</Button>
+                <Button Height="30" Width="140" Margin="00,20,0,10" FontSize="20" x:Name="code_H" Click="code_H_Click">Код H</Button>
+                <Button Height="30" Width="140" Margin="00,20,0,10" FontSize="20" x:Name="code_J" Click="code_J_Click">Код J</Button>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center" Width="200" Grid.Column="1">
+                <Button Height="30" Width="140" Margin="00,20,0,10" FontSize="20" x:Name="code_L" Click="code_L_Click">Код L</Button>
+                <Button Height="30" Width="140" Margin="00,20,0,10" FontSize="20" x:Name="code_M" Click="code_M_Click">Код M</Button>
+                <Button Height="30" Width="140" Margin="00,20,0,10" FontSize="20" x:Name="code_N" Click="code_N_Click">Код N</Button>
+                <Button Height="30" Width="140" Margin="00,20,0,10" FontSize="20" x:Name="code_P" Click="code_P_Click">Код P</Button>
+                <Button Height="30" Width="140" Margin="00,20,0,10" FontSize="20" x:Name="code_R" Click="code_R_Click">Код R</Button>
+                <Button Height="30" Width="140" Margin="00,20,0,10" FontSize="20" x:Name="code_S" Click="code_S_Click">Код S</Button>
+                <Button Height="30" Width="140" Margin="00,20,0,10" FontSize="20" x:Name="code_V" Click="code_V_Click">Код V</Button>
+                <Button Grid.Row="3" Width="100px" Height="30px"  Margin="20,0,20,0" Background="#613F9D" Foreground="White" FontSize="13" x:Name="resetButton" Click="resetButton_Click">Сброс фильтров</Button>
+
+
+            </StackPanel>
+
+        </Grid>
+
+
+
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="280"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock FontSize="15">Воспользуйтесь сортировкой<LineBreak/> по лекарственыым<LineBreak/> препаратам, либо системой<LineBreak/> поиска</TextBlock>
+                    <TextBox HorizontalAlignment="Left" Width="170" Height="30" Margin="20,25,0,25" Grid.Column="1" x:Name="searchTextBox" TextChanged="searchTextBox_TextChanged"></TextBox>
+                    
+                </Grid>
+
+            </StackPanel>
+            <DataGrid Grid.Row="1" x:Name="MedecinesDataGrid" AutoGenerateColumns="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Название лекарства" Binding="{Binding medicine_name}" Width="*"/>
+                    <DataGridTextColumn Header="Цена" Binding="{Binding cost}" Width="*"/>
+                    <DataGridTextColumn Header="Скидочная цена" Binding="{Binding sale_cost}" Width="*"/>
+
+
+                </DataGrid.Columns>
+
+            </DataGrid>
+            <StackPanel Grid.Row="3" Orientation="Horizontal">
+                <Button Grid.Row="3" Width="75px" Height="50px" Margin="20,0,20,0"   Background="#613F9D" Foreground="White" FontSize="13" x:Name="removeButton" Click="removeButton_Click">Удалить</Button>
+                <Button Grid.Row="3" Width="75px" Height="50px"  Background="#613F9D" Foreground="White" FontSize="13" x:Name="editButton" Click="editButton_Click">Подробнее</Button>
+                <Button Grid.Row="3" Width="75px" Height="50px" Margin="20,0,20,0"  Background="#613F9D" Foreground="White" FontSize="13" x:Name="addMedicineButton" Click="addMedicineButton_Click">Добавить</Button>
+                <Button Grid.Row="3" Width="75px" Height="50px" Margin="0,0,20,0"  Background="#613F9D" Foreground="White" FontSize="10" x:Name="redactButton" Click="redactButton_Click">Редактировать</Button>
+                <Button Grid.Row="3" Width="75px" Height="50px"  Background="#613F9D" Foreground="White" FontSize="10" x:Name="addToPurchaseButton" Click="addToPurchaseButton_Click">К покупке</Button>
+            </StackPanel>
+            
+
+        </Grid>
+
+
+
+
+    </Grid>
+</Page>
