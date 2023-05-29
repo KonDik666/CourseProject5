@@ -76,6 +76,9 @@ namespace CourseProject.View.Pages
             List<ordered_medecines> selected = new List<ordered_medecines>();
 			int count = 0;
 			Console.WriteLine(selectedOrdrMed.Count);
+			List<int> idPreparates = new List<int>();
+            List<int> amountPreparates = new List<int>();
+
             for (int i= 0; i < selectedOrdrMed.Count; i++)
 			{
 				bool r = true;
@@ -98,6 +101,8 @@ namespace CourseProject.View.Pages
 
                     }
 					sumMed2.Add(Convert.ToInt32(selectedOrdrMed[i].medicines_id_medicines));
+					idPreparates.Add(Convert.ToInt32(selectedOrdrMed[i].medicines_id_medicines));
+					amountPreparates.Add(count);
                     Console.WriteLine("}}" +selectedOrdrMed[i].medicines_id_medicines + "  " + count);
 					count = 0;
                 }
@@ -105,6 +110,7 @@ namespace CourseProject.View.Pages
 				
 				//selected.AddRange( db.context.ordered_medecines.Where(x => x.medicines_id_medicines == i).ToList());
 			}
+			Console.WriteLine(idPreparates.Count + "  " + amountPreparates.Count);
 			
 			
 
