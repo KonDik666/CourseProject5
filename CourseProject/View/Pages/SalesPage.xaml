@@ -21,9 +21,10 @@
                 <DataGridTextColumn Header="Проданные лекарства" Binding="{Binding medecines_list}" Width="*"/>
                 <DataGridTextColumn Header="Сумма покупки" Binding="{Binding order_sum}" Width="*"/>
             </DataGrid.Columns>
-            
+
         </DataGrid>
         <Button Grid.Row="1" Width="150px" Height="50px" Background="#613F9D" Foreground="White" x:Name="moreOrderInfoButton" Click="moreOrderInfoButton_Click">Подробнее</Button>
-        <Button Grid.Row="1" Width="150px" Height="50px" Background="#613F9D" Foreground="White" x:Name="reportButton" Click="reportButton_Click" Margin="516,25,134,25">Сохранение отчета</Button>
+        <Button Grid.Row="1" Height="50px"  Width="150px" Background="#613F9D" Foreground="White" x:Name="reportButton" Click="reportButton_Click" Margin="507,25,134,25">Сохранение отчета(день)</Button>
+        <Button Grid.Row="1" Height="50px"  Width="170px" Background="#613F9D" Foreground="White" Margin="124,25,509,25" x:Name="reportIntervalButton" Click="reportIntervalButton_Click">Сохранение отчета(интервал)</Button>
     </Grid>
 </Page>

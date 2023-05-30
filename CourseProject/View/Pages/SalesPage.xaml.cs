@@ -26,6 +26,7 @@ namespace CourseProject.View.Pages
 	public partial class SalesPage : Page
 	{
 		Core db = new Core();
+		public int dayOrInterval = 0;
 		public SalesPage()
 		{
 			InitializeComponent();
@@ -57,8 +58,7 @@ namespace CourseProject.View.Pages
             for (int i= 0; i < allOrderedMed.Count; i++)
 			{
 				
-    //           ordered_medecines drdrd = db.context.ordered_medecines.Where(x => x.id_ordered_medecines == ur).FirstOrDefault();
-				//selectedOrdrMed.Add(drdrd);
+   
 				for(int j=0; j<selectedTimeOrders.Count; j++)
 				{
                     int ur = selectedTimeOrders[j].id_orders;
@@ -70,11 +70,21 @@ namespace CourseProject.View.Pages
 				}
 
             }
+           
+			int counter = 0;
+
+            for (int i = 0; i < selectedTimeOrders.Count; i++)
+			{
+				counter += Convert.ToInt32(selectedTimeOrders[i].order_sum);
+			}
 			int[] sumMed = new int[selectedOrdrMed.Count];
-			List<int> sumMed2 = new List<int>();
+			List<int> sumMed2 = new List<int>();   //подсчет кол-ва препаратов
+
+			
 			List<medicines> existingMedicines = db.context.medicines.ToList();
             List<ordered_medecines> selected = new List<ordered_medecines>();
 			int count = 0;
+
 			Console.WriteLine(selectedOrdrMed.Count);
 			List<int> idPreparates = new List<int>();
             List<int> amountPreparates = new List<int>();
@@ -97,20 +107,28 @@ namespace CourseProject.View.Pages
                         {
                             count += Convert.ToInt32(selectedOrdrMed[j].selected_medecines_amount);
                         }
-						//Console.WriteLine("j= " + j+ " "+ selectedOrdrMed[i].medicines_id_medicines+ " "+ selectedOrdrMed[j].medicines_id_medicines+ "   "+ count);
+					
 
-                    }
+					}
 					sumMed2.Add(Convert.ToInt32(selectedOrdrMed[i].medicines_id_medicines));
 					idPreparates.Add(Convert.ToInt32(selectedOrdrMed[i].medicines_id_medicines));
 					amountPreparates.Add(count);
                     Console.WriteLine("}}" +selectedOrdrMed[i].medicines_id_medicines + "  " + count);
 					count = 0;
                 }
+
 				
-				
-				//selected.AddRange( db.context.ordered_medecines.Where(x => x.medicines_id_medicines == i).ToList());
+			
 			}
-			Console.WriteLine(idPreparates.Count + "  " + amountPreparates.Count);
+			List<medicines> medicinesOfIdPreparates = new List<medicines>();
+			for(int i=0; i<idPreparates.Count; i++)
+			{
+				int ur = idPreparates[i];
+
+                medicines addingMed = db.context.medicines.Where(x => x.id_medicines == ur).FirstOrDefault();
+				medicinesOfIdPreparates.Add(addingMed);
+			}
+			Console.WriteLine(idPreparates.Count + "  " + amountPreparates.Count + "ddd "+ medicinesOfIdPreparates[1].medicine_name);
 			
 			
 
@@ -126,6 +144,153 @@ namespace CourseProject.View.Pages
             //создаем лист
             Excel.Worksheet worksheet = workbook.ActiveSheet;
             worksheet.Name = "Отчет";
+
+            Excel.Range range = worksheet.get_Range("A1", "E1");
+            Excel.Range range2 = worksheet.get_Range("A2", "E2");
+            Excel.Range range3 = worksheet.get_Range("D7", "E7");
+            range.Merge(Type.Missing);
+			range2.Merge(Type.Missing);
+            range3.Merge(Type.Missing);
+            range.Value = "Отчет по продажам товаров за "+ datte;
+			range2.Value = "За данную дату продано:";
+			range3.Value = "Прибыль: " + counter + " руб";
+			
+			for(int i=2; i < medicinesOfIdPreparates.Count+2; i++)
+			{
+				
+                    worksheet.Cells[i + 1, 1] = medicinesOfIdPreparates[i-2].medicine_name;
+                    worksheet.Cells[i + 1, 3] = amountPreparates[i-2]+" шт";
+
+
+            }
+
+
+        }
+
+		private void reportIntervalButton_Click(object sender, RoutedEventArgs e)
+		{
+			ChoosingDateIntervalDialogWindow chooseDateInteval = new ChoosingDateIntervalDialogWindow();
+			chooseDateInteval.ShowDialog();
+			string date1 = chooseDateInteval.Value1;
+			string date2 = chooseDateInteval.Value2;
+			DateTime datetime1 = Convert.ToDateTime(date1);
+			DateTime datetime2 = Convert.ToDateTime(date2);
+			Console.WriteLine("чуч"+ date1);
+            Console.WriteLine("чуч" + date2);
+            List<orders> selectedTimeOrders = db.context.orders.Where(x => x.order_date>=datetime1 && x.order_date<=datetime2).ToList();
+			Console.WriteLine("чучсмек"+ selectedTimeOrders.Count);
+            List<ordered_medecines> selectedOrdrMed = new List<ordered_medecines>();
+            List<ordered_medecines> allOrderedMed = db.context.ordered_medecines.ToList();
+            Console.WriteLine("общ" + allOrderedMed.Count);
+            for (int i = 0; i < allOrderedMed.Count; i++)
+            {
+
+
+                for (int j = 0; j < selectedTimeOrders.Count; j++)
+                {
+                    int ur = selectedTimeOrders[j].id_orders;
+                    if (allOrderedMed[i].orders_id_orders == ur)
+                    {
+                        selectedOrdrMed.Add(allOrderedMed[i]);
+                        Console.WriteLine("erre" + allOrderedMed[i].medicines_id_medicines);
+                    }
+                }
+
+            }
+
+            int counter = 0;
+
+            for (int i = 0; i < selectedTimeOrders.Count; i++)
+            {
+                counter += Convert.ToInt32(selectedTimeOrders[i].order_sum);
+            }
+            int[] sumMed = new int[selectedOrdrMed.Count];
+            List<int> sumMed2 = new List<int>();   //подсчет кол-ва препаратов
+
+
+            List<medicines> existingMedicines = db.context.medicines.ToList();
+            List<ordered_medecines> selected = new List<ordered_medecines>();
+            int count = 0;
+
+            Console.WriteLine(selectedOrdrMed.Count);
+            List<int> idPreparates = new List<int>();
+            List<int> amountPreparates = new List<int>();
+
+            for (int i = 0; i < selectedOrdrMed.Count; i++)
+            {
+                bool r = true;
+                for (int j = 0; j < sumMed2.Count; j++)
+                {
+                    if (selectedOrdrMed[i].medicines_id_medicines == sumMed2[j])
+                    {
+                        r = false;
+                    }
+                }
+                if (r == true)
+                {
+                    for (int j = 0; j < selectedOrdrMed.Count; j++)
+                    {
+                        if (selectedOrdrMed[i].medicines_id_medicines == selectedOrdrMed[j].medicines_id_medicines)
+                        {
+                            count += Convert.ToInt32(selectedOrdrMed[j].selected_medecines_amount);
+                        }
+
+
+                    }
+                    sumMed2.Add(Convert.ToInt32(selectedOrdrMed[i].medicines_id_medicines));
+                    idPreparates.Add(Convert.ToInt32(selectedOrdrMed[i].medicines_id_medicines));
+                    amountPreparates.Add(count);
+                    Console.WriteLine("}}" + selectedOrdrMed[i].medicines_id_medicines + "  " + count);
+                    count = 0;
+                }
+
+
+
+            }
+            List<medicines> medicinesOfIdPreparates = new List<medicines>();
+            for (int i = 0; i < idPreparates.Count; i++)
+            {
+                int ur = idPreparates[i];
+
+                medicines addingMed = db.context.medicines.Where(x => x.id_medicines == ur).FirstOrDefault();
+                medicinesOfIdPreparates.Add(addingMed);
+            }
+            Console.WriteLine(idPreparates.Count + "  " + amountPreparates.Count + "ddd " + medicinesOfIdPreparates[1].medicine_name);
+
+
+
+
+
+            //создаем файл Excel
+            Excel.Application aplication = new Excel.Application();
+            aplication.Visible = true;
+            //количество листов
+            aplication.SheetsInNewWorkbook = 1;
+            //добавляем рабочую книгу
+            Excel.Workbook workbook = aplication.Workbooks.Add(Type.Missing);
+            //создаем лист
+            Excel.Worksheet worksheet = workbook.ActiveSheet;
+            worksheet.Name = "Отчет";
+
+            Excel.Range range = worksheet.get_Range("A1", "E1");
+            Excel.Range range2 = worksheet.get_Range("A2", "E2");
+            Excel.Range range3 = worksheet.get_Range("D7", "E7");
+            range.Merge(Type.Missing);
+            range2.Merge(Type.Missing);
+            range3.Merge(Type.Missing);
+            range.Value = "Отчет по продажам товаров за интервал с" + date1 +" по" + date2;
+            range2.Value = "За данный интервал продано:";
+            range3.Value = "Прибыль: " + counter + " руб";
+
+            for (int i = 2; i < medicinesOfIdPreparates.Count + 2; i++)
+            {
+
+                worksheet.Cells[i + 1, 1] = medicinesOfIdPreparates[i - 2].medicine_name;
+                worksheet.Cells[i + 1, 3] = amountPreparates[i - 2] + " шт";
+
+
+            }
+
 
 
         }

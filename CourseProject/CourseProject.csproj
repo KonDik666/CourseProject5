@@ -68,6 +68,9 @@
     <Compile Include="ChoosingDateDialogWindow.xaml.cs">
       <DependentUpon>ChoosingDateDialogWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChoosingDateIntervalDialogWindow.xaml.cs">
+      <DependentUpon>ChoosingDateIntervalDialogWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Core.cs" />
     <Compile Include="MedecinesNewAmountDialogWindow.xaml.cs">
       <DependentUpon>MedecinesNewAmountDialogWindow.xaml</DependentUpon>
@@ -179,6 +182,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ChoosingDateDialogWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChoosingDateIntervalDialogWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
