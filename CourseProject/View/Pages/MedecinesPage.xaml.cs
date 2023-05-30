@@ -22,7 +22,7 @@ namespace CourseProject.View.Pages
     public partial class MedecinesPage : Page
     {
         Core db = new Core();
-        //List<medicines> arrayMedicines;
+        
         public MedecinesPage()
         {
             InitializeComponent();
@@ -32,20 +32,21 @@ namespace CourseProject.View.Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             
-            MedecinesDataGrid.ItemsSource = db.context.medecines_availability.ToList();
+            MedecinesDataGrid.ItemsSource = db.context.medecines_availability.ToList();  //формирование датагрид на основе таблицы medicines
             MedecinesDataGrid.ItemsSource = db.context.medicines.ToList();
         }
 
         private void editButton_Click(object sender, RoutedEventArgs e)
         {
             
-            var currentMedicine = MedecinesDataGrid.SelectedItem as medicines;
+            var currentMedicine = MedecinesDataGrid.SelectedItem as medicines;        
             App.selectedCurrentMedecine = MedecinesDataGrid.SelectedItem as medicines;
-            NavigationService.Navigate(new MedecineInfoPage(currentMedicine));
+            NavigationService.Navigate(new MedecineInfoPage(currentMedicine));   //перенаправлние на страницу с подробной информацией о лекарстве
            
             
         }
 
+        //сортировка дата грид по атх классификации
         private void code_A_Click(object sender, RoutedEventArgs e)
         {
             MedecinesDataGrid.ItemsSource = db.context.medicines.Where(p => p.medicine_code == "a").ToList();
@@ -134,15 +135,16 @@ namespace CourseProject.View.Pages
 
         private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            //сортировка датагрид по вводу в текстбоксе
             MedecinesDataGrid.ItemsSource = db.context.medicines.Where(p=>p.medicine_name == searchTextBox.Text || p.medicine_name.Contains(searchTextBox.Text)).ToList();
         }
 
         private void addMedicineButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new NewMedecinePage(null));
+            NavigationService.Navigate(new NewMedecinePage(null));  //перенапрвлние на страницу с добавлением и редактирвоанием лекарства
         }
 
-        private void removeButton_Click(object sender, RoutedEventArgs e)
+        private void removeButton_Click(object sender, RoutedEventArgs e) //удаление лекарства
         {
             if (MessageBox.Show("Вы действительно хотите удалить данное лекарство?", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
@@ -158,30 +160,30 @@ namespace CourseProject.View.Pages
 
         private void redactButton_Click(object sender, RoutedEventArgs e)
         {
-            var selectedMedicine = MedecinesDataGrid.SelectedItem as medicines;
+            var selectedMedicine = MedecinesDataGrid.SelectedItem as medicines; //перенапрвлние на страницу с добавлением и редактирвоанием лекарства со входным значением medicines для последущего редактирвоания
             NavigationService.Navigate(new NewMedecinePage(selectedMedicine));
         }
 
-        private void addToPurchaseButton_Click(object sender, RoutedEventArgs e)
+        private void addToPurchaseButton_Click(object sender, RoutedEventArgs e) //добавление лекарства в окно покупки
         {
             medicines selectedMedecine = MedecinesDataGrid.SelectedItem as medicines;
             medecines_availability availabilityOrNot = db.context.medecines_availability.Where(x => x.adresses_id_adresses == App.currentAdressName.id_adresses && x.medecines_id_medecines == selectedMedecine.id_medicines).FirstOrDefault();
           
             if (MessageBox.Show("Добавить " + selectedMedecine.medicine_name + " к покупке?", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                if(availabilityOrNot != null)
+                if(availabilityOrNot != null)  //если лекартсво отсутвует по текущему адресу , вывод сообщения об этом
                 {
                     bool containsOrNot = false;
                     for (int i = 0; i < App.selectedToOrderMedecines.Count; i++)
                     {
-                        if (App.selectedToOrderMedecines[i].id_medicines == selectedMedecine.id_medicines)
+                        if (App.selectedToOrderMedecines[i].id_medicines == selectedMedecine.id_medicines)   //если лекарство уже нгаходится в окне покупки, вывод сообщения об этом
                         {
                             containsOrNot = true;
                         }
                     }
-                    if (containsOrNot == false)
+                    if (containsOrNot == false)    
                     {
-                        App.selectedToOrderMedecines.Add(selectedMedecine);
+                        App.selectedToOrderMedecines.Add(selectedMedecine);    //добавление лекарства в окно покупки и сообщение об успешном выолнении
                         MessageBox.Show("Добавлено к товарам!");
                     }
                     else

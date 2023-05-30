@@ -31,6 +31,7 @@ namespace CourseProject
 
         private void autorizationButton_Click(object sender, RoutedEventArgs e)
         {
+            //авторизация
             var countRecord = arrayUsers.Where(x => x.login == LoginTextBlock.Text && x.password == PassPasswordBox.Password).FirstOrDefault();
             if (countRecord != null)
             {

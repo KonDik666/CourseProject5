@@ -30,23 +30,27 @@ namespace CourseProject.View.Pages
 		public SalesPage()
 		{
 			InitializeComponent();
+            if (App.CurrentUser.role == "stuff")
+            {
+                reportIntervalButton.IsEnabled = false;  //если роль пользователя stuff, изменение доступности кнопки формирвоания отчета за временной интервал
+            }
 		}
 
 		private void Page_Loaded(object sender, RoutedEventArgs e)
 		{
-			SalesDataGrid.ItemsSource=db.context.orders.ToList();
+			SalesDataGrid.ItemsSource=db.context.orders.ToList();  //формирвоание датагрид на оснвое таблицы orders
 		}
 
 		private void moreOrderInfoButton_Click(object sender, RoutedEventArgs e)
 		{
-			var selectedOrder = SalesDataGrid.SelectedItem as orders;
+			var selectedOrder = SalesDataGrid.SelectedItem as orders;  //переход на старницу с подробным описанием выбранного заказа
 			NavigationService.Navigate(new MoreOrderInfoPage(selectedOrder));
 
 		}
 
-		private void reportButton_Click(object sender, RoutedEventArgs e)
+		private void reportButton_Click(object sender, RoutedEventArgs e)   //создание отчета по выбранной дате
 		{
-			ChoosingDateDialogWindow chooseDate = new ChoosingDateDialogWindow();
+			ChoosingDateDialogWindow chooseDate = new ChoosingDateDialogWindow();  //открытие диалогового окна для выбора даты
 			chooseDate.ShowDialog();
 			string datte = chooseDate.Value;
 			DateTime rtr = Convert.ToDateTime(datte);
@@ -55,7 +59,7 @@ namespace CourseProject.View.Pages
 			List<ordered_medecines> selectedOrdrMed = new List<ordered_medecines>();
 			List<ordered_medecines> allOrderedMed = db.context.ordered_medecines.ToList();
             Console.WriteLine("общ" + allOrderedMed.Count);
-            for (int i= 0; i < allOrderedMed.Count; i++)
+            for (int i= 0; i < allOrderedMed.Count; i++)   //сортирвовка данных из ьаблицы ordered_medecines по выбранной пользователем дате
 			{
 				
    
@@ -89,6 +93,7 @@ namespace CourseProject.View.Pages
 			List<int> idPreparates = new List<int>();
             List<int> amountPreparates = new List<int>();
 
+            //получение инофрмации об общем коллчисевте каждого препарата по выбранной дате
             for (int i= 0; i < selectedOrdrMed.Count; i++)
 			{
 				bool r = true;
@@ -105,14 +110,14 @@ namespace CourseProject.View.Pages
                     {
                         if (selectedOrdrMed[i].medicines_id_medicines == selectedOrdrMed[j].medicines_id_medicines)
                         {
-                            count += Convert.ToInt32(selectedOrdrMed[j].selected_medecines_amount);
+                            count += Convert.ToInt32(selectedOrdrMed[j].selected_medecines_amount);  //подсчет колличества i-го препарата
                         }
 					
 
 					}
 					sumMed2.Add(Convert.ToInt32(selectedOrdrMed[i].medicines_id_medicines));
-					idPreparates.Add(Convert.ToInt32(selectedOrdrMed[i].medicines_id_medicines));
-					amountPreparates.Add(count);
+					idPreparates.Add(Convert.ToInt32(selectedOrdrMed[i].medicines_id_medicines));  //занемение в массив id всех лекарств во временном прмежутке
+					amountPreparates.Add(count);  //занесение в в массив колличества каждого лекарства во временном прмежутке
                     Console.WriteLine("}}" +selectedOrdrMed[i].medicines_id_medicines + "  " + count);
 					count = 0;
                 }
@@ -131,7 +136,7 @@ namespace CourseProject.View.Pages
 			Console.WriteLine(idPreparates.Count + "  " + amountPreparates.Count + "ddd "+ medicinesOfIdPreparates[1].medicine_name);
 			
 			
-
+            //Вывод отчета в Excel
         
 
             //создаем файл Excel
@@ -167,7 +172,7 @@ namespace CourseProject.View.Pages
 
         }
 
-		private void reportIntervalButton_Click(object sender, RoutedEventArgs e)
+		private void reportIntervalButton_Click(object sender, RoutedEventArgs e)  //создание отчета по временному промежутку(создается так же как и предыдущий с изменением конкретной даты на интервал)
 		{
 			ChoosingDateIntervalDialogWindow chooseDateInteval = new ChoosingDateIntervalDialogWindow();
 			chooseDateInteval.ShowDialog();

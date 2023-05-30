@@ -37,7 +37,7 @@ namespace CourseProject.View.Pages
             {
                 cityTextBox.Text = selectedAdress.city;
                 adressTextBox.Text = selectedAdress.adress;
-                //buildingTypeComboBox.SelectedItem = selectedBuilding.building_type;
+            
                 currentAdresses = selectedAdress;
                 addOrEdit = 1;
             }
@@ -56,16 +56,8 @@ namespace CourseProject.View.Pages
                 checking += 1;
             }
 
-            //if (CheckClass.CheckNameString(adressTextBox.Text) == false)
-            //{
-            //    adressTextBox.Text = "";
-            //    MessageBox.Show("Неправильно введен адрес");
-
-            //}
-            //else
-            //{
-            //    checking += 1;
-            //}
+        
+       
 
             if(buildingTypeComboBox.SelectedItem == null)
             {
@@ -96,7 +88,7 @@ namespace CourseProject.View.Pages
                     vault.building_id_building = 2;
                 }
 
-                //var currentBuilding = buildingTypeComboBox.SelectedItem.ToString() as building;
+              
 
                 
 
@@ -117,7 +109,7 @@ namespace CourseProject.View.Pages
 
 
 
-                //var currentBuilding = buildingTypeComboBox.SelectedItem.ToString() as building;
+         
 
 
 

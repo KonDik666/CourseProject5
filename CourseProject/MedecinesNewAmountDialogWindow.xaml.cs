@@ -31,7 +31,7 @@ namespace CourseProject
 
         public string Value
         {
-            get { return valueBox.Text; }
+            get { return valueBox.Text; } //результат диалогвоого окна при нажатии кнопки
         }
     }
 }

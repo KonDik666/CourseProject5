@@ -25,14 +25,14 @@ namespace CourseProject.View.Pages
         public NewMedecineAddressPage()
         {
             InitializeComponent();
-            addressesComboBox.ItemsSource = db.context.adresses.Select(p => p.adress).ToList();
+            addressesComboBox.ItemsSource = db.context.adresses.Select(p => p.adress).ToList(); //добавление названий адресов в комбобокс
         }
 
         private void addNewMedecineAddressButton_Click(object sender, RoutedEventArgs e)
         {
             medecines_availability addMedAvailability = new medecines_availability();
 
-           
+           //добавление нового адреса для лекарства
 
             addMedAvailability.amount_of_medecines = amountOfMedecinesTextBox.Text;
 

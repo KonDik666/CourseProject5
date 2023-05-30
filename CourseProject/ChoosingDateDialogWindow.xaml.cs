@@ -26,7 +26,7 @@ namespace CourseProject
 
         private void Accept_Click(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = true;
+            this.DialogResult = true; //результат диалогвоого окна при нажатии кнопки
         }
 
         public string Value

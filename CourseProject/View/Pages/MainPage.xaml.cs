@@ -20,16 +20,18 @@ namespace CourseProject.View.Pages
     /// </summary>
     public partial class MainPage : Page
     {
+
         public MainPage()
         {
             InitializeComponent();
-            if (App.CurrentUser.role == "stuff")
+            if (App.CurrentUser.role == "stuff")    //устновка доступности кнопки поставщиков на false, если текущая роль пользователя - "stuff"
             {
-                usersButton.IsEnabled = false;
+
                 providersInfoButton.IsEnabled = false;
             }
         }
 
+        //осуществление переходов на страницы
         private void medecinesButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new MedecinesPage());

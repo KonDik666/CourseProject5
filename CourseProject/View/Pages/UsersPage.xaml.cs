@@ -27,20 +27,25 @@ namespace CourseProject.View.Pages
         {
             InitializeComponent();
 
+            if (App.CurrentUser.role == "stuff")
+            {
+                addUserButton.IsEnabled = false;  //данные кнопки не доступны для пользоватлеей "stuff"
+                removeUserButton.IsEnabled = false;
+            }
             
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            usersInfoGrid.ItemsSource = db.context.user.ToList();
+            usersInfoGrid.ItemsSource = db.context.user.ToList();  //формирвоание датагрид на оснвое таблицы user
         }
 
         private void addUserButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new NewUserPage(null));
+            NavigationService.Navigate(new NewUserPage(null));  //перенаправление на станницу добавления или редактирвоания нового пользователя
         }
 
-        private void removeUserButton_Click(object sender, RoutedEventArgs e)
+        private void removeUserButton_Click(object sender, RoutedEventArgs e) //удалене пользовтаеля
         {
             if (MessageBox.Show("Вы действительно хотите удалить данного пользователя?","Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question)== MessageBoxResult.Yes)
             {
@@ -56,8 +61,24 @@ namespace CourseProject.View.Pages
         private void changeUserInfoButton_Click(object sender, RoutedEventArgs e)
         {
 
-            var SelectedUser = usersInfoGrid.SelectedItem as user;
-            NavigationService.Navigate(new NewUserPage(SelectedUser));
+            var SelectedUser = usersInfoGrid.SelectedItem as user;  //изменение информации о пользлователе
+            if (App.CurrentUser.role == "stuff")
+            {
+               
+                if (SelectedUser.id_user == App.CurrentUser.id_user)
+                {
+                    NavigationService.Navigate(new NewUserPage(SelectedUser));
+                }
+                else
+                {
+                    MessageBox.Show("Пользователи со статусом <stuff> не могут редактировать других пользователей");
+                }
+            }
+            else
+            {
+                NavigationService.Navigate(new NewUserPage(SelectedUser));
+            }
+           
 
         }
     }

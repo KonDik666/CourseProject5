@@ -49,13 +49,13 @@ namespace CourseProject.View.Pages
             }
            
             List<photo> photos = db.context.photo.ToList();
-            List<photo> tyty = photos.Where(x=>x.medicines_id_medicines == currentId).ToList();
+            List<photo> tyty = photos.Where(x=>x.medicines_id_medicines == currentId).ToList();   //поиск фото по id мед препарата
             Console.WriteLine(tyty.Count);
             if (tyty.Count>0)
             {
                 List<photo> photoList = new List<photo>();
                 photoList = db.context.photo.Where(x => x.medicines_id_medicines == currentMedicine.id_medicines).ToList();
-                string[] codes = new string[photoList.Count];
+                string[] codes = new string[photoList.Count]; //массив для путей фото 
                 for (int i = 0; i < photoList.Count; i++)
                 {
                     codes[i] += photoList[i].path;
@@ -64,14 +64,14 @@ namespace CourseProject.View.Pages
 
                 string b = string.Empty;
                 int val = 0;
-                int firstIndex = codee.IndexOf('(');
-                codee = codee.Substring(0, firstIndex);
+                int firstIndex = codee.IndexOf('(');  
+                codee = codee.Substring(0, firstIndex);  //извлечение подстроки из пути фото до первой скобки для получения id препарата занесенного в имя фото
 
                 for (int i = 0; i < codee.Length; i++)
                 {
                     if (Char.IsDigit(codee[i]))
                     {
-                        b += codee[i];
+                        b += codee[i];       //занесение в массив строк с путем фото
                     }
 
 
@@ -79,7 +79,7 @@ namespace CourseProject.View.Pages
                 if (b.Length > 0)
                 {
                     val = int.Parse(b);
-                    Console.WriteLine(val);
+                    Console.WriteLine(val);   //переменная val с id препарат, полученная из пути фото, с помощью разделения его на подстроку 
                 }
 
 
@@ -91,7 +91,7 @@ namespace CourseProject.View.Pages
 
                 ere = db.context.photo.Where(x => x.medicines_id_medicines == val).ToList();
 
-                if (ere.Count == 2)
+                if (ere.Count == 2)   //добавление 2х фото, если в базе имеются 2 фото для выбранного препаратаФ
                 {
                     Uri src = new Uri(ere[0].path, UriKind.Relative);
                     BitmapImage bImg = new BitmapImage(src);
@@ -103,7 +103,7 @@ namespace CourseProject.View.Pages
 
                     image2.Source = bImg2;
                 }
-                else
+                else   // добавление 1го фото препарата, если в базе менее 2х фото данного препарата
                 {
 
                     Uri src = new Uri(ere[0].path, UriKind.Relative);
@@ -116,9 +116,9 @@ namespace CourseProject.View.Pages
 
 
 
-                Console.WriteLine(ere[0].path);
+              
             }
-            else
+            else    //если в базе не найдено ни одного фото для препарта, вывод 2х фото с логотипом компании вместо них
             {
                 Uri src = new Uri("../../Assets/Images/logo.png", UriKind.Relative);
                 BitmapImage bImg = new BitmapImage(src);
@@ -137,9 +137,10 @@ namespace CourseProject.View.Pages
             result = (medecines_availability)db.context.medecines_availability.Where(x => x.medecines_id_medecines == currentId).FirstOrDefault(); //вывод колличества прперата(из таблицы medecines_availability)
             resultsArray = db.context.medecines_availability.Where(x => x.medecines_id_medecines == currentId).ToList();
            
+
             if (resultsArray != null)
             {
-                medecines_availability result2 = resultsArray.Where(x => x.adresses_id_adresses == App.currentAdressName.id_adresses).FirstOrDefault();
+                medecines_availability result2 = resultsArray.Where(x => x.adresses_id_adresses == App.currentAdressName.id_adresses).FirstOrDefault();   //вывод колличества препарата по теккщуему адресу
 
                 if (result2 != null)
                 {
@@ -149,7 +150,7 @@ namespace CourseProject.View.Pages
                 }
                 else if(result2 == null)
                 {
-                    result3 = Convert.ToInt32(resultsArray.Max(x => x.amount_of_medecines));
+                    result3 = Convert.ToInt32(resultsArray.Max(x => x.amount_of_medecines));   //в случае отстувие лекарства по текущему адресу, вывод лекарства по адресу где наибольшее его колличсетво
 
                     amountTextBlock.Text = result3.ToString();
                 }
@@ -157,7 +158,7 @@ namespace CourseProject.View.Pages
             }
             else
             {
-                amountTextBlock.Text = "нет в наличии";
+                amountTextBlock.Text = "нет в наличии";     //в случае отсутвия препарата по всем существующим адресам вывод надписи "нет в наличии"
             }
 
             
@@ -166,27 +167,28 @@ namespace CourseProject.View.Pages
 
         private void amountInfoButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new MedecinesAmount(selectedMedecine));
+            NavigationService.Navigate(new MedecinesAmount(selectedMedecine));  //переход на старницу с информацией о колличестве препарата по адресам аптек
         }
 
         private void orderAddButton_Click(object sender, RoutedEventArgs e)
         {
+            //добавление выбранного лекарства в окно покупки
             medecines_availability availabilityOrNot = db.context.medecines_availability.Where(x => x.adresses_id_adresses == App.currentAdressName.id_adresses && x.medecines_id_medecines == selectedMedecine.id_medicines).FirstOrDefault();
             if (MessageBox.Show("Добавить " + selectedMedecine.medicine_name + " к покупке?", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
-                if (availabilityOrNot != null)
+                if (availabilityOrNot != null)   //если лекартсво отсутвует по текущему адресу , вывод сообщения об этом
                 {
                     bool containsOrNot = false;
                     for (int i = 0; i < App.selectedToOrderMedecines.Count; i++)
                     {
-                        if (App.selectedToOrderMedecines[i].id_medicines == selectedMedecine.id_medicines)
+                        if (App.selectedToOrderMedecines[i].id_medicines == selectedMedecine.id_medicines)   //если лекарство уже нгаходится в окне покупки, вывод сообщения об этом
                         {
                             containsOrNot = true;
                         }
                     }
                     if (containsOrNot == false)
                     {
-                        App.selectedToOrderMedecines.Add(selectedMedecine);
+                        App.selectedToOrderMedecines.Add(selectedMedecine);   //добавление лекарства в окно покупки и сообщение об успешном выолнении
                         MessageBox.Show("Добавлено к товарам!");
                     }
                     else

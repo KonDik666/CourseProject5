@@ -29,22 +29,22 @@ namespace CourseProject.View.Pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            adressesInfoGrid.ItemsSource = db.context.adresses.ToList();
+            adressesInfoGrid.ItemsSource = db.context.adresses.ToList(); //формирвоание датагрид на основе таблицы adresses
         }
 
         private void addAdressButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new NewVaultPage(null));
+            NavigationService.Navigate(new NewVaultPage(null));  //переход на старницу с добавлением/изменением адреса
         }
 
         private void changeAdressInfoButton_Click(object sender, RoutedEventArgs e)
         {
             var selectedAdress = adressesInfoGrid.SelectedItem as adresses;
            
-            NavigationService.Navigate(new NewVaultPage(selectedAdress));
+            NavigationService.Navigate(new NewVaultPage(selectedAdress)); //переход на старницу с добавлением/изменением адреса, со входным значением в виде выбранного адреса в датагрид
         }
 
-        private void removeAdressButton_Click(object sender, RoutedEventArgs e)
+        private void removeAdressButton_Click(object sender, RoutedEventArgs e) //удаление адреса
         {
             if (MessageBox.Show("Вы действительно хотите удалить данного адрес? Это приведет к обнулении связанной с ним информации в базе", "Уведомление", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {

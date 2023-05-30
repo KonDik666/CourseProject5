@@ -25,7 +25,7 @@ namespace CourseProject
         }
         private void Accept_Click(object sender, RoutedEventArgs e)
         {
-            if(Convert.ToDateTime(selectFirstDateDatePicker.Text)< Convert.ToDateTime(selectSecondDateDatePicker.Text))
+            if(Convert.ToDateTime(selectFirstDateDatePicker.Text)< Convert.ToDateTime(selectSecondDateDatePicker.Text)) //если первая дата не превышвет вторую результат диалогвоого окна при нажатии кнопки
             {
                 this.DialogResult = true;
             }

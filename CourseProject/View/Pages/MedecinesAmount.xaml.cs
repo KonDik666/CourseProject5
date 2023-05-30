@@ -26,15 +26,15 @@ namespace CourseProject.View.Pages
         medicines curentMedicine = new medicines();
         public MedecinesAmount(medicines selectedMedecine)
         {
-            InitializeComponent();
-            List<medecines_availability> medAvailabilityAll = db.context.medecines_availability.ToList();
+            InitializeComponent();                                                                            //получение информации о выбранном препарате
+            List<medecines_availability> medAvailabilityAll = db.context.medecines_availability.ToList(); 
             curentMedicine = selectedMedecine;
             App.currentMedPreparate = selectedMedecine;
            
            
             List<medecines_availability> medAvailability = medAvailabilityAll.Where(x => x.medecines_id_medecines == selectedMedecine.id_medicines).ToList();
 
-          
+         //вывод текстблока с названием выбранного перпарата
             TextBlock medecineName = new TextBlock
             {
                 Text = selectedMedecine.medicine_name,
@@ -42,7 +42,7 @@ namespace CourseProject.View.Pages
                 TextAlignment = TextAlignment.Center,
 
             };
-            medNameStackPanel.Children.Add(medecineName);
+            medNameStackPanel.Children.Add(medecineName); //добавление текстблоков в стакпанель
 
 
             List<adresses> medAdressesAll = db.context.adresses.ToList();
@@ -50,7 +50,7 @@ namespace CourseProject.View.Pages
             string[] sss = new string[medAdressesAll.Count];
             int[] aaaa = new int[medAdressesAll.Count];
 
-            for (int i = 0; i < medAdressesAll.Count; i++)
+            for (int i = 0; i < medAdressesAll.Count; i++)    //создание текстблоков с названием адресов, за которыми закрпаелено выбранное лекарство, колличеством выбранного препарат на каждом адресе
             {
 
 
@@ -79,12 +79,12 @@ namespace CourseProject.View.Pages
 
 
                         };
-                        amountStackPanel.Children.Add(amount);
+                        amountStackPanel.Children.Add(amount); //добавление текстблоков в стакпанель
 
                         Button changeButton = new Button
                         {
                             Content = "Изменить",
-                            Name = "i"+medAvailability[j].id_medecines_availability.ToString(),
+                            Name = "i"+medAvailability[j].id_medecines_availability.ToString(),    //создание кнопок для изменения колличесва препарата
                             Margin = new Thickness(0, 10, 0 ,0),
                         };
                         changeButtonsStackPanel.Children.Add(changeButton);
@@ -116,7 +116,7 @@ namespace CourseProject.View.Pages
         {
           
             Button changeButton = (Button)sender;
-            int firstIndex = changeButton.Name.IndexOf('i');
+            int firstIndex = changeButton.Name.IndexOf('i');  //считывание индекса кнопки
             string index;
             index = changeButton.Name.Substring(firstIndex+1);
      
@@ -129,7 +129,7 @@ namespace CourseProject.View.Pages
             medecines_availability currentMedecinesAvailability = db.context.medecines_availability.Where(x=>x.id_medecines_availability==buttonIndex).FirstOrDefault();
 
 
-            MedecinesNewAmountDialogWindow dialogWindow = new MedecinesNewAmountDialogWindow();
+            MedecinesNewAmountDialogWindow dialogWindow = new MedecinesNewAmountDialogWindow();   //открытие диалогового окна для установки нового значения для колличества препарата по выбранному адресу
 
             if (dialogWindow.ShowDialog() == true)
             {
@@ -151,7 +151,7 @@ namespace CourseProject.View.Pages
 
         private void newAddressOfMedecineButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new NewMedecineAddressPage());
+            NavigationService.Navigate(new NewMedecineAddressPage());  //переход на страницу с закрпелением адреса за лекарством
         }
     }
 }

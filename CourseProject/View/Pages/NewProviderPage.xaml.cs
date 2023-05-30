@@ -24,16 +24,16 @@ namespace CourseProject.View.Pages
     {
         Core db = new Core();
         providers currentProviders = new providers();
-        public int addOrEdit = 0;
-        public NewProviderPage(providers selectedProvider)
+        public int addOrEdit = 0;  //определение будет ли пользователь добавлять или редактирвоать с помощью перемнной addOrEdit
+        public NewProviderPage(providers selectedProvider)  
         {
             InitializeComponent();
             currentProviders = selectedProvider;
 
-            if(currentProviders != null)
+            if(currentProviders != null)  //если входное значение страницы не пустое то заполнение текстблоков данными выбранного поставщика для редактирвоания
             {
                 addOrEdit = 1;
-                newProviderNameTextBox.Text = selectedProvider.provider_name;
+                newProviderNameTextBox.Text = selectedProvider.provider_name;  
                 newProviderDateTextBox.Text = selectedProvider.supplies_date;
             }
             
@@ -43,7 +43,7 @@ namespace CourseProject.View.Pages
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
 
-            if (addOrEdit == 0)
+            if (addOrEdit == 0)  //добавление нового поставщика в базу
             {
                 providers newProvider = new providers();
                 newProvider.provider_name = newProviderNameTextBox.Text;
@@ -53,7 +53,7 @@ namespace CourseProject.View.Pages
                 MessageBox.Show("Поставщик был успешно добавлен в базу");
                 NavigationService.GoBack();
             }
-            else if(addOrEdit == 1)
+            else if(addOrEdit == 1) //редактирвоание существующего поставщика в базе
             {
                 currentProviders.provider_name = newProviderNameTextBox.Text;
                 currentProviders.supplies_date = newProviderDateTextBox.Text;

@@ -22,10 +22,11 @@ namespace CourseProject.View.Pages
 	public partial class MoreOrderInfoPage : Page
 	{
 		Core db = new Core();
-		public MoreOrderInfoPage(orders SelectedOrder)
+		public MoreOrderInfoPage(orders SelectedOrder)  //вывод подробной информации о заказе
 		{
 			InitializeComponent();
 
+            //вывод текстблоков с информацией о заказе
 			TextBlock orderNumber = new TextBlock
 			{
                 Text = "Покупка No "+SelectedOrder.id_orders,
@@ -72,6 +73,7 @@ namespace CourseProject.View.Pages
             Console.WriteLine("erer" + ordrMed.Count);
             List<medicines> medNames = new List<medicines>();
             medicines med = new medicines();
+            //добавление текстблоков с информацией о лекарстввах в заказе
             for (int i=0; i < ordrMed.Count; i++)
             {
                 int u = Convert.ToInt32(ordrMed[i].medicines_id_medicines);

@@ -33,21 +33,21 @@ namespace CourseProject.View.Pages
 
         private void addProviderButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new NewProviderPage(null));
+            NavigationService.Navigate(new NewProviderPage(null)); //переход на стрницу с доьбавлнием и редактирвоанием нового поставщика
         }
 
         private void changeProviderButton_Click(object sender, RoutedEventArgs e)
         {
-            var selectedProvider = providersDataGrid.SelectedItem as providers;
+            var selectedProvider = providersDataGrid.SelectedItem as providers; //переход на стрницу с доьбавлнием и редактирвоанием нового поставщика со входным значением в виде выбранного поставщика
             NavigationService.Navigate(new NewProviderPage(selectedProvider));
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            providersDataGrid.ItemsSource = db.context.providers.ToList();
+            providersDataGrid.ItemsSource = db.context.providers.ToList();  //формирвоание датагрид на оснвое таблицы providers из базы
         }
 
-        private void removeProviderButton_Click(object sender, RoutedEventArgs e)
+        private void removeProviderButton_Click(object sender, RoutedEventArgs e) //удаление поставщика
         {
             var selectedProvider = providersDataGrid.SelectedItem as providers;
             List<medicines> providersMedicines = db.context.medicines.Where(x => x.providers_id_providers == selectedProvider.id_providers).ToList();
@@ -65,7 +65,7 @@ namespace CourseProject.View.Pages
         private void moreProviderInfoButton_Click(object sender, RoutedEventArgs e)
         {
             var selectedProvider = providersDataGrid.SelectedItem as providers;
-            NavigationService.Navigate(new ProvidersMoreInfoPage(selectedProvider));
+            NavigationService.Navigate(new ProvidersMoreInfoPage(selectedProvider));  //переход на станцу с подробной информацией о поставщикке
         }
     }
 }

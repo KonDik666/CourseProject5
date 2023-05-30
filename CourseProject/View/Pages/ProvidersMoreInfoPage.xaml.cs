@@ -35,7 +35,7 @@ namespace CourseProject.View.Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
 
-            medecinesOfProvidersDataGrid.ItemsSource = db.context.medicines.Where(x => x.providers_id_providers == currentProvider.id_providers).ToList();
+            medecinesOfProvidersDataGrid.ItemsSource = db.context.medicines.Where(x => x.providers_id_providers == currentProvider.id_providers).ToList(); //формирвоание датагрид с информацией о поставляемой продукции поставщика
         }
     }
 }

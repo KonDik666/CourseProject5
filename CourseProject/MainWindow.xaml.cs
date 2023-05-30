@@ -27,6 +27,10 @@ namespace CourseProject
         public MainWindow()
         {
             InitializeComponent();
+            if (App.CurrentUser.role == "stuff")
+            {
+                changeLocationButton.IsEnabled = false;
+            }
             MainFrame.Navigate(new MainPage());
             int index = 1;
             App.currentAdressName = db.context.adresses.Where(x=>x.is_last_selected==index).FirstOrDefault();
@@ -55,6 +59,8 @@ namespace CourseProject
             {
                 changeLocationButton.Visibility = Visibility.Collapsed;
             }
+
+            //изменение заголовка в зависимости от страниц на которых находится пользовтель, так же замена текста для возвращения назад
            
             if(page is MedecinesPage)
             {
@@ -81,7 +87,7 @@ namespace CourseProject
             if (page is VaultsListsPage)
             {
                 Exit.Text = "Назад";
-                MainHeader.Text = "Добавьте нового пользовавтеля";
+                MainHeader.Text = "Список адресов аптек и складов";
             }
             if(page is MedecinesAmount)
             {
@@ -113,6 +119,7 @@ namespace CourseProject
                 Exit.Text = "Назад";
                 MainHeader.Text = "Подробная нформация о продажах";
             }
+           
 
 
         }
@@ -147,8 +154,10 @@ namespace CourseProject
             
         }
 
+        //кнопка для изменения текущего местоположения приложения, недостпна рядовым пользоватлям
         private void changeLocationButton_Click(object sender, RoutedEventArgs e)
         {
+           
             SelecetNewAdressDialogWindow adressChange = new SelecetNewAdressDialogWindow();
             adressChange.ShowDialog();
 
