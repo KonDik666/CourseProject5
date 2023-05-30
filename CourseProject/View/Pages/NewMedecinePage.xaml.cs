@@ -58,7 +58,9 @@ namespace CourseProject.View.Pages
 
         private void providersComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            selectedIdProvider = providersComboBox.SelectedIndex + 1;  //запись индекса+1 в переменную для id поставщика
+            providers curentProvider = db.context.providers.Where(x=>x.provider_name==providersComboBox.SelectedItem.ToString()).FirstOrDefault();
+          
+            selectedIdProvider = curentProvider.id_providers;
             Console.WriteLine(selectedIdProvider);
         }
 
