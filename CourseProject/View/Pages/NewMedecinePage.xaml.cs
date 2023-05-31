@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using StringCheckLibrary;
 
 namespace CourseProject.View.Pages
 {
@@ -66,8 +67,57 @@ namespace CourseProject.View.Pages
 
         private void saveButton_Click(object sender, RoutedEventArgs e)
         {
+            int checking = 0;
+            if (CheckClass.CheckNameString(nameTextBloxk.Text)==true)
+            {
+                checking++;
+            }
+            else
+            {
+                nameTextBloxk.Text = "";
+                MessageBox.Show("Введите название препарата русскими буквами без символов и цифр");
+            }
+            if (CheckClass.CheckMedecineCode(atxCodeTextBlock.Text) == true)
+            {
+                checking++;
+            }
+            else
+            {
+                atxCodeTextBlock.Text = "";
+                MessageBox.Show("Введите медицинский код препарата английской буквой из существующих кодов");
+            }
+            if (CheckClass.OnlyDigits(costTextBlock.Text) == true)
+            {
+                checking++;
+            }
+            else
+            {
+                costTextBlock.Text = "";
+                MessageBox.Show("Введите стоимость препарата в руб, без символов и букв");
+            }
+            if (CheckClass.OnlyDigits(saleCostTextBlock.Text) == true)
+            {
+                if (Convert.ToInt32(costTextBlock.Text) > Convert.ToInt32(saleCostTextBlock.Text))
+                {
+                    checking++;
+                }
+                else
+                {
+                    saleCostTextBlock.Text = "";
+                    MessageBox.Show("Скидочная стоимость не должна превышать обычную");
+                }
+                
+                   
+            }
+            else
+            {
+                saleCostTextBlock.Text = "";
+                MessageBox.Show("Введите скидочную стоимость препарата в руб, без символов и букв");
+            }
+           
 
-            if (addOrEdit==0)
+
+            if (addOrEdit==0 && checking==4)
             {
                 medicines applyMedecine = new medicines();   //добавление нового лекарства в базу
 
@@ -89,7 +139,7 @@ namespace CourseProject.View.Pages
                 NavigationService.GoBack();
             }
            
-            else if (addOrEdit == 1)  //редактирование существующего лекарства
+            else if (addOrEdit == 1 && checking == 4)  //редактирование существующего лекарства
             {
                 currentMedicine.medicine_name = nameTextBloxk.Text;
                 currentMedicine.medicine_code = atxCodeTextBlock.Text;

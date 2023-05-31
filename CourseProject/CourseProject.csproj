@@ -349,6 +349,8 @@
     <Resource Include="Assets\Images\DB_Images\id13%282%29.jpg" />
     <Resource Include="Assets\Images\DB_Images\id14%281%29.jpg" />
     <Resource Include="Assets\Images\DB_Images\id14%282%29.jpg" />
+    <Resource Include="Assets\Images\DB_Images\id23%281%29.png" />
+    <Resource Include="Assets\Images\DB_Images\id23%282%29.png" />
     <Content Include="View\Model\PharmacyModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>PharmacyModel.Context.cs</LastGenOutput>

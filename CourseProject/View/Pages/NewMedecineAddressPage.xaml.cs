@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using StringCheckLibrary;
 
 namespace CourseProject.View.Pages
 {
@@ -22,6 +23,7 @@ namespace CourseProject.View.Pages
     public partial class NewMedecineAddressPage : Page
     {
         Core db = new Core();
+        int checking = 0;
         public NewMedecineAddressPage()
         {
             InitializeComponent();
@@ -36,22 +38,44 @@ namespace CourseProject.View.Pages
 
             addMedAvailability.amount_of_medecines = amountOfMedecinesTextBox.Text;
 
-            adresses curAdr = db.context.adresses.Where(x => x.adress == addressesComboBox.SelectedItem.ToString()).FirstOrDefault();
-            addMedAvailability.medecines_id_medecines = App.selectedCurrentMedecine.id_medicines;
-            addMedAvailability.adresses_id_adresses = curAdr.id_adresses;
-            List<medecines_availability> check = db.context.medecines_availability.Where(x => x.medecines_id_medecines == addMedAvailability.medecines_id_medecines & x.adresses_id_adresses == addMedAvailability.adresses_id_adresses).ToList();
-            Console.WriteLine(check.Count);
-            if (check.Count != 0)
+           
+          
+            if (CheckClass.OnlyDigits(amountOfMedecinesTextBox.Text) == true)
             {
-                MessageBox.Show("Данный адрес уже закреплен за этим лекарством");
-
+                checking++;
             }
             else
             {
-                db.context.medecines_availability.Add(addMedAvailability);
-                db.context.SaveChanges();
-                MessageBox.Show("Новый адрес успешно закрпелен за этим лекарством");
+                MessageBox.Show("Введите в поле колличесва только цифру");
             }
+            if (addressesComboBox.SelectedItem != null)
+            {
+                checking++;
+            }
+            else
+            {
+                MessageBox.Show("Выберите адрес");
+            }
+
+            if (checking == 2)
+            {
+                adresses curAdr = db.context.adresses.Where(x => x.adress == addressesComboBox.SelectedItem.ToString()).FirstOrDefault();
+                addMedAvailability.medecines_id_medecines = App.selectedCurrentMedecine.id_medicines;
+                addMedAvailability.adresses_id_adresses = curAdr.id_adresses;
+                List<medecines_availability> check = db.context.medecines_availability.Where(x => x.medecines_id_medecines == addMedAvailability.medecines_id_medecines & x.adresses_id_adresses == addMedAvailability.adresses_id_adresses).ToList();
+                if (check.Count != 0)
+                {
+                    MessageBox.Show("Данный адрес уже закреплен за этим лекарством");
+
+                }
+                else
+                {
+                    db.context.medecines_availability.Add(addMedAvailability);
+                    db.context.SaveChanges();
+                    MessageBox.Show("Новый адрес успешно закрпелен за этим лекарством");
+                }
+            }
+           
 
 
         }
